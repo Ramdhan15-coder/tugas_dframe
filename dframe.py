@@ -1,5 +1,3 @@
-
-
 print("Nomor1")
 #"Dengan menggunakan pustaka pandas di Python,
 # # buatlah sebuah DataFrame dari data jumlah produksi sampah berdasarkan Kabupaten/Kota di Jawa Barat. 
@@ -38,10 +36,10 @@ print("\n")
 print("Nomor2") #menjumlahkan data sampah tahun tahun tertentu
 total_sampah_2018 = 0
 for index, row in df.iterrows():
-    if row['tahun'] == 2019:
+    if row['tahun'] == 2018:
         total_sampah_2018 += row['jumlah_sampah']
 
-print(f"\nTotal produksi sampah di Jawa Barat untuk tahun 2016: {total_sampah_2018:.2f} ton per hari")
+print(f"\nTotal produksi sampah di Jawa Barat untuk tahun 2018 adalah: {total_sampah_2018:.2f} ton sampah")
 print("\n")
 
 print("Nomor3")   #menjumlahkan data pertahun
@@ -52,11 +50,12 @@ for i, row in df.iterrows():
     jumlah_sampah = row['jumlah_sampah']
     if tahun not in total_per_tahun:
         total_per_tahun[tahun] = 0
-        total_per_tahun[tahun] += jumlah_sampah
+    total_per_tahun[tahun] += jumlah_sampah  
 
 print("Total produksi sampah per tahun:")
 for tahun, total in total_per_tahun.items():
-    print(f"Tahun {tahun}: {total:.2f} ton sampah per hari")
+    print(f"Tahun {tahun}: {total:.2f} ton sampah pertahun") 
+
     
 print("\n")
 print("Nomor4")
@@ -66,21 +65,24 @@ for index, row in df.iterrows():
     kabupaten = row['nama_kabupaten']
     tahun = row['tahun']
     jumlah_sampah = row['jumlah_sampah']
+    
     if kabupaten not in total_per_kabupaten_tahun:
         total_per_kabupaten_tahun[kabupaten] = {}
+
     if tahun not in total_per_kabupaten_tahun[kabupaten]:
         total_per_kabupaten_tahun[kabupaten][tahun] = 0
+        
     total_per_kabupaten_tahun[kabupaten][tahun] += jumlah_sampah
 
 print("Total produksi sampah per Kota/Kabupaten per tahun:")
 for kabupaten, tahun_data in total_per_kabupaten_tahun.items():
     print(f"\n{kabupaten}:")
     for tahun, total in tahun_data.items():
-        print(f"  Tahun {tahun}: {total:.2f} ton sampah per hari")
+        print(f"  Tahun {tahun}: {total:.2f} ton sampah pertaun")
         
 # Export ke CSV
-csv_file_name = "dataCSV.csv"
-df.to_csv(csv_file_name, index=False)
+csv_nama_file = "dataCSV.csv"
+df.to_csv(csv_nama_file, index=False)
 
 # Export ke Excel
 excel_file_name = "dataEXCEL.xlsx"
